@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-hero-detail',
@@ -12,6 +13,7 @@ import { HeroService } from '../hero.service';
 export class HeroDetailComponent implements OnInit {
   
   hero?: Hero;
+  heroName = new FormControl('');
 
   constructor(
     private route: ActivatedRoute,
@@ -26,11 +28,15 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
-                    .subscribe(hero => this.hero = hero);
+                    .subscribe(hero => {
+                      this.hero = hero;
+                      this.heroName.setValue(this.hero.name);
+                    });
   }
 
   save(): void{
-    if(!this.hero) return;
+    if(!this.hero || !this.heroName.value) return;
+    this.hero.name = this.heroName.value;
     this.heroService.updateHero(this.hero)
                     .subscribe(() => this.goBack());
   }
