@@ -10,6 +10,9 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
+import { DirectiveTestComponent } from './directive-test/directive-test.component';
+import { HighlightDirective } from './highlight.directive';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    ProfileEditorComponent
+    ProfileEditorComponent,
+    HeroFormComponent,
+    DirectiveTestComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
